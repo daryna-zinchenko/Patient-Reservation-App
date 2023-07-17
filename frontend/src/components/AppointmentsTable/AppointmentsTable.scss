@@ -1,0 +1,11 @@
+.AppointmentsTable {
+  width: 60%;
+  margin: 0 auto;
+
+  &__item {
+    display: block;
+    width: 100px;
+    background-color: #fb70b8;
+    border: 1px solid #28151e;
+  }
+}

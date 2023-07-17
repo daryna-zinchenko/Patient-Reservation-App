@@ -1,0 +1,20 @@
+.Button {
+  background-color: #f59fba;
+  line-height: 30px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.25s;
+  color: #FFF;
+  transition: all 0.5s;
+  border: none;
+  border-radius: 3px;
+  padding: 0;
+
+  &:hover {
+    opacity: 0.8;
+    background-color: #ff75a0;
+    border: 0.5px solid #ff0252;
+  }
+}
