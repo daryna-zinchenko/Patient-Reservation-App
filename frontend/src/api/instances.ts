@@ -14,7 +14,7 @@ const addAppointments = (appointments: string) => {
 };
 
 const getAppointments = () => {
-  return client.get<Appointment[]>(`/appointments`);
+  return client.get<Appointment[]>('/appointments');
 };
 
 const deleteAppointment = (id: string) => {
@@ -27,9 +27,9 @@ const updateAppointment = (id: string, newAppointment: Appointment) => {
 };
 
 const clearData = () => {
-  client.delete<string>(`/patients`)
-  client.delete<string>(`/doctors`)
-  client.delete<string>(`/appointments`)
+  client.delete<string>('/patients')
+  client.delete<string>('/doctors')
+  client.delete<string>('/appointments')
 };
 
 export const instanceApi = {

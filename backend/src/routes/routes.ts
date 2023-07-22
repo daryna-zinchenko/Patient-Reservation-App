@@ -9,7 +9,7 @@ import {
 const rootRouter = Router();
 
 rootRouter.post('/appointments', AppointmentController.createAppointments);
-// rootRouter.get('/appointments', AppointmentController.getAllAppointments);
+rootRouter.get('/appointments', AppointmentController.getAppointments);
 // rootRouter.delete('/appointment/:id', AppointmentController.deleteAppointment);
 rootRouter.delete('/appointments', AppointmentController.deleteAllAppointments);
 // rootRouter.patch('/appointments/:id', AppointmentController.updateAppointment);

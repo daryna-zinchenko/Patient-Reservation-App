@@ -1,6 +1,6 @@
 .DataUploader {
   min-width: 600px;
-  width: 70%;
+  width: 80%;
   height: 100%;
   margin: 0 auto;
 
@@ -30,7 +30,7 @@
   &__buttons {
     display: flex;
     float: right;
-    width: calc(70vw / 3 - 18px);
+    width: calc(80vw / 3 - 18px);
     gap: 10px;
 
     @media (max-width: 857px) {

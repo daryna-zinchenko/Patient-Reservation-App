@@ -8,13 +8,13 @@
   transition: border-color 0.25s;
   color: #FFF;
   transition: all 0.5s;
-  border: none;
+  border: 1px solid #ffffff;
   border-radius: 3px;
   padding: 0;
 
   &:hover {
     opacity: 0.8;
-    background-color: #ff75a0;
-    border: 0.5px solid #ff0252;
+    background-color: #ff427e;
+    border: 1px solid #ff0252;
   }
 }

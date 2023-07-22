@@ -1,13 +1,13 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
-import express, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { AppointmentModel, IAppointment } from './../models/AppointmentModel';
 
 export async function createAppointments(req: Request, res: Response) {
   const newAppointments: string = req.body;
-
-  const duplicatesAppointments: string[] = [];
   const wrongFormatAppointments: string[] = [];
-  const successfulAppointments: IAppointment[] = [];
+  const successfulAppointments: string[] = [];
+  const appointmentsToInsert: IAppointment[] = [];
 
   const appointments = (newAppointments as string)
     .trim()
@@ -35,31 +35,24 @@ export async function createAppointments(req: Request, res: Response) {
     const validationError = validatedAppointment.validateSync();
 
     if (validationError) {
-      wrongFormatAppointments.push(JSON.stringify(appointment));
+      wrongFormatAppointments.push(appointment.join(','));
       continue;
     }
 
-    const existingAppointment = await AppointmentModel.findOne({
-      patientId, doctorId, appointmentTime,
-    });
+    successfulAppointments.push(appointment.join(','));
 
-    if (existingAppointment) {
-      duplicatesAppointments.push(JSON.stringify(appointment));
-    } else {
-      successfulAppointments.push({
-        patientId, doctorId, appointmentTime,
-      });
-    }
+    appointmentsToInsert.push({
+      patientId: parseInt(patientId), doctorId: parseInt(doctorId), appointmentTime,
+    });
   }
 
   const response = {
-    successfulAppointments: successfulAppointments,
-    wrongFormatAppointments: wrongFormatAppointments,
-    duplicatesAppointments: duplicatesAppointments,
+    successfulAppointments: successfulAppointments.join('\n'),
+    wrongFormatAppointments: wrongFormatAppointments.join('\n'),
   };
 
   try {
-    await AppointmentModel.insertMany(successfulAppointments);
+    await AppointmentModel.insertMany(appointmentsToInsert);
     res.send(response);
   } catch (error) {
     res.statusCode = 500;
@@ -67,7 +60,7 @@ export async function createAppointments(req: Request, res: Response) {
   }
 }
 
-export const deleteAllAppointments = async(res: express.Response) => {
+export const deleteAllAppointments = async(res: Response) => {
   try {
     await AppointmentModel.deleteMany();
     res.statusCode = 200;
@@ -75,5 +68,18 @@ export const deleteAllAppointments = async(res: express.Response) => {
   } catch (error) {
     res.statusCode = 500;
     res.send(error);
+  }
+};
+
+export const getAppointments = async(res: Response) => {
+  try {
+    const appointments = await AppointmentModel.find();
+
+    console.log(appointments);
+    res.send(appointments);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    console.log(error);
   }
 };

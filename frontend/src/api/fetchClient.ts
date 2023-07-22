@@ -13,7 +13,13 @@ function request<T>(
     options.body = data;
   }
 
-  return fetch(BASE_URL + url, options).then((res) => res.json()) as Promise<T>;
+  return fetch(BASE_URL + url, options).then(response => {
+      if (!response.ok) {
+        throw new Error();
+      }
+      return response.json()
+    }
+  ) as Promise<T>;
 }
 
 export const client = {

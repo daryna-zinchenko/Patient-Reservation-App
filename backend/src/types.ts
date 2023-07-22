@@ -7,7 +7,7 @@ export interface IPerson {
 
 export interface IAppointment {
    _id?: string;
-  patientId: string;
-  doctorId: string;
+  patientId: number;
+  doctorId: number;
   appointmentTime?: string;
 }

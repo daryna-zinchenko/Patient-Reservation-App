@@ -1,22 +1,22 @@
 export type ResponseMessage = {
-  resultPatients: ResultPatients,
-  resultDoctors: ResultDoctors,
-  resultAppointments: ResultAppointments,
- } | {}
+  resultPatients?: ResultPatients,
+  resultDoctors?: ResultDoctors,
+  resultAppointments?: ResultAppointments,
+ }
 
 export type ResultPatients = {
-  successfulPatients?: String;
-  wrongFormatPatients?: String;
-  duplicatesPatients?: String;
+  successfulPatients?: string;
+  wrongFormatPatients?: string;
+  duplicatesPatients?: string;
 }
 
 export type ResultDoctors = {
-  successfulDoctors?: String;
-  wrongFormatDoctors?: String;
-  duplicatesDoctors?: String;
+  successfulDoctors?: string;
+  wrongFormatDoctors?: string;
+  duplicatesDoctors?: string;
 }
 
 export type ResultAppointments = {
-  successfulAppointments?: String;
-  wrongFormatAppointments?: String;
+  successfulAppointments?: string;
+  wrongFormatAppointments?: string;
 }
