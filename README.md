@@ -24,5 +24,4 @@ This application is built using the following technologies:
 - create Patients
 - create Doctors
 - create Appointments
-- edit appointments
 - delete all datafrom DB
