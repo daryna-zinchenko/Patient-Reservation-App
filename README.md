@@ -18,7 +18,7 @@ This application is built using the following technologies:
 2. Install dependencies by running `npm install` in backend directory and in frontend directory in a separate terminal windows.
 3. Run the server using `npm run server` from backend directory.
 4. In a separate terminal window, run the client using `npm run dev` from frontend directory.
-5. Navigate to http://localhost:3000 in your web browser to view the application.
+5. Navigate from frontend terminal link to your web browser to view the application.
 
 ## Features
 - create Patients
