@@ -12,35 +12,29 @@ import { submitAppointments } from "../../helpers/submitAppointments";
 export const DataUploader: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [responseMessage, setResponseMessage] = useState<ResponseMessage | undefined>();
-  const [resultDoctors, setResultDoctors] = useState<ResultDoctors>({});
-  const [resultAppointments, setResultAppointments] = useState<ResultAppointments>({});
-  const [resultPatients, setResultPatients] = useState<ResultPatients>({});
-
-  
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const dataObj = Object.fromEntries(formData.entries());
     try {
+      const responseMessage: ResponseMessage = {}
+
       if (dataObj.Patients && dataObj.Patients.length > 0) {
         const resultPatientsData = await submitPatients(dataObj.Patients).then((res) => res);
-        console.log(resultPatientsData)
-        setResultPatients(resultPatientsData as ResultPatients);
+        responseMessage.resultPatients = resultPatientsData as ResultPatients
       }
 
       if (dataObj.Doctors && dataObj.Doctors.length > 0) {
         const resultDoctorsData = await submitDoctors(dataObj.Doctors).then((res) => res);
-        console.log(resultDoctorsData)
-        setResultDoctors(resultDoctorsData as ResultDoctors);
+        responseMessage.resultDoctors = resultDoctorsData as ResultDoctors
       }
 
       if (dataObj.Appointments && dataObj.Appointments.length > 0) {
         const resultAppointmentsData = await submitAppointments(dataObj.Appointments).then((res) => res);
-        console.log(resultAppointmentsData)
-        setResultAppointments(resultAppointmentsData as ResultAppointments);
+        responseMessage.resultAppointments = resultAppointmentsData as ResultAppointments
       }
-      setResponseMessage({ resultPatients, resultDoctors, resultAppointments });
+      setResponseMessage(responseMessage);
       setShowPopup(true);
       (e.target as HTMLFormElement).reset();
     } catch (error) {

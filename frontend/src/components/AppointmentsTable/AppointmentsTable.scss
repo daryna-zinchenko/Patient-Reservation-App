@@ -1,11 +1,22 @@
 .AppointmentsTable {
+  display: flex;
   width: 60%;
+  column-gap: 10%;
   margin: 0 auto;
 
-  &__item {
+  &__column {
     display: block;
-    width: 100px;
-    background-color: #fb70b8;
+    width: 50%;
     border: 1px solid #28151e;
+  }
+
+  &__item {
+    border: 1px solid #28151e;
+    padding: 10px;
+    display: flex;
+  }
+
+  &__item>* {
+    flex: 1;
   }
 }
