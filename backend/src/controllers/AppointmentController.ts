@@ -55,31 +55,25 @@ export async function createAppointments(req: Request, res: Response) {
     await AppointmentModel.insertMany(appointmentsToInsert);
     res.send(response);
   } catch (error) {
-    res.statusCode = 500;
-    res.send(error);
+    res.status(500).send(error);
   }
 }
 
-export const deleteAllAppointments = async(res: Response) => {
+export const deleteAllAppointments = async(req: Request, res: Response) => {
   try {
     await AppointmentModel.deleteMany();
-    res.statusCode = 200;
-    res.send();
+    res.status(200).send();
   } catch (error) {
-    res.statusCode = 500;
-    res.send(error);
+    res.status(500).send(error);
   }
 };
 
-export const getAppointments = async(res: Response) => {
+export const getAppointments = async(req: Request, res: Response) => {
   try {
     const appointments = await AppointmentModel.find();
 
-    console.log(appointments);
     res.send(appointments);
   } catch (error) {
-    console.log(error);
     res.status(500).send(error);
-    console.log(error);
   }
 };

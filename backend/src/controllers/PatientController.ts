@@ -70,18 +70,17 @@ export async function createPatients(req: Request, res: Response) {
     await PatientModel.insertMany(patientsToInsert);
     res.send(response);
   } catch (error) {
-    res.statusCode = 500;
-    res.send(error);
+    res.status(500).send(error);
   }
 
   console.log('response', response);
 }
 
-export const deleteAllPatients = async(res: express.Response) => {
+export const deleteAllPatients = async(req: Request, res: Response) => {
   try {
     await PatientModel.deleteMany();
+    res.status(200).send();
   } catch (error) {
-    res.statusCode = 500;
-    res.send(error);
+    res.status(500).send(error);
   }
 };

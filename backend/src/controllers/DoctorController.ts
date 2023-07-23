@@ -70,18 +70,17 @@ export async function createDoctors(req: Request, res: Response) {
     await DoctorModel.insertMany(doctorsToInsert);
     res.send(response);
   } catch (error) {
-    res.statusCode = 500;
-    res.send(error);
+    res.status(500).send(error);
   }
 
   console.log('response', response);
 }
 
-export const deleteAllDoctors = async(res: Response) => {
+export const deleteAllDoctors = async(req: Request, res: Response) => {
   try {
     await DoctorModel.deleteMany();
+    res.status(200).send();
   } catch (error) {
-    res.statusCode = 500;
-    res.send(error);
+    res.status(500).send(error);
   }
 };
